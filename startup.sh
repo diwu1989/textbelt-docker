@@ -7,5 +7,4 @@ sed -i "s|secureConnection: 'false'|secureConnection: process.env.SECURE_CONNECT
 sed -i "s|'\"Jane Doe\"|process.env.REALNAME|" /textbelt/lib/config.js
 sed -i "s|<jane.doe@example.com>|+ ' <' + process.env.FROM_ADDRESS + '>|" /textbelt/lib/config.js
 sed -i "s|debugEnabled: false|debugEnabled: Boolean(process.env.MAIL_DEBUG)|" /textbelt/lib/config.js
-nodejs /textbelt/server/app.js &
-trap : TERM INT; (while true; do sleep 5000; done) & wait
+exec node /textbelt/server/app.js
