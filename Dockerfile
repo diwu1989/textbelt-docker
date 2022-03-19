@@ -1,7 +1,16 @@
 FROM node:alpine
 
+ENV COMMIT=ae180ce
+WORKDIR /textbelt
+RUN wget -O - https://github.com/diwu1989/textbelt/tarball/$COMMIT \
+  | tar vxz --strip-components=1
+RUN yarn && npm cache clean --force && yarn cache clean --all --force
+
+COPY startup.sh /startup.sh
+CMD sh /startup.sh
+
+# variables for textbelt
 ENV \
-#variables for textbelt
   PORT="9090" \
   HOST="imap.gmail.com" \
   MAIL_PORT="587" \
@@ -11,13 +20,5 @@ ENV \
   FROM_ADDRESS="email@emailaddress.com" \
   REALNAME="yourname" \
   MAIL_DEBUG="true"
-
-WORKDIR /textbelt
-RUN wget -O - https://github.com/typpo/textbelt/tarball/fa533c889ea8320885047f6f71879cda23dfc098 \
-  | tar xz --strip-components=1
-RUN npm --prefix . install . && npm cache clean --force
-
-COPY startup.sh /startup.sh
-CMD sh /startup.sh
 
 EXPOSE 9090
