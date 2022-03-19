@@ -1,6 +1,6 @@
 FROM node:alpine
 
-ENV COMMIT=599707d
+ENV COMMIT=a192484
 WORKDIR /textbelt
 RUN wget -O - https://github.com/diwu1989/textbelt/tarball/$COMMIT \
   | tar vxz --strip-components=1
