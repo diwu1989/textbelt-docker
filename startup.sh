@@ -6,5 +6,5 @@ sed -i "s|pass: 'example password 1'|pass: process.env.MAIL_PASS|" /textbelt/lib
 sed -i "s|secureConnection: 'false'|secureConnection: process.env.SECURE_CONNECTION|" /textbelt/lib/config.js
 sed -i "s|'\"Jane Doe\"|process.env.REALNAME|" /textbelt/lib/config.js
 sed -i "s|<jane.doe@example.com>|+ ' <' + process.env.FROM_ADDRESS + '>|" /textbelt/lib/config.js
-sed -i "s|debugEnabled: false|debugEnabled: Boolean(process.env.MAIL_DEBUG)|" /textbelt/lib/config.js
+sed -i "s|debugEnabled: false|debugEnabled: process.env.MAIL_DEBUG == 'true'|" /textbelt/lib/config.js
 exec node /textbelt/server/app.js

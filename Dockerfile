@@ -10,7 +10,7 @@ ENV \
   SECURE_CONNECTION="true" \
   FROM_ADDRESS="email@emailaddress.com" \
   REALNAME="yourname" \
-  MAIL_DEBUG="1"
+  MAIL_DEBUG="true"
 
 WORKDIR /textbelt
 RUN wget -O - https://github.com/typpo/textbelt/tarball/fa533c889ea8320885047f6f71879cda23dfc098 \
